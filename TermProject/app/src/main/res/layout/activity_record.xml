@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/activity_main"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context="my.mobile.com.termproject.MainActivity"
+    android:orientation="vertical"
+    android:background="@mipmap/back"
+    android:padding="20dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/tv01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="o 카테고리를 체크해주세요"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/category"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="o 구체적으로 무엇을 하였나요?\n (30자 내외)"
+            android:textStyle="bold"
+            android:textSize="20dp"/>
+        <EditText
+            android:id="@+id/edit01"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:background="@drawable/drawp"
+            android:padding="10dp"
+            android:gravity="start"
+            android:textColor="#000000"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom">
+        <Button
+            android:id="@+id/photo_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="사진 찍기"/>
+        <Button
+            android:id="@+id/save_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="저장하기"/>
+        <Button
+            android:id="@+id/showmap_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="맵으로 보여주기"/>
+
+    </LinearLayout>
+</LinearLayout>

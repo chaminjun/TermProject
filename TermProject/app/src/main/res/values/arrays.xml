@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category">
+        <item >o Study</item>
+        <item >o Meeting</item>
+        <item >o Health</item>
+        <item >o Eating</item>
+        <item >o etc</item>
+    </string-array>
+</resources>
