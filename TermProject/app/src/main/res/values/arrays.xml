@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="category">
-        <item >o Study</item>
-        <item >o Meeting</item>
-        <item >o Health</item>
-        <item >o Eating</item>
-        <item >o etc</item>
+        <item > 1. 공부</item>
+        <item > 2. 회의</item>
+        <item > 3. 운동</item>
+        <item > 4. 식사</item>
+        <item > 5. etc</item>
     </string-array>
 </resources>

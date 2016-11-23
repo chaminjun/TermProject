@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category2">
+        <item > 1. 공연</item>
+        <item > 2. 시위</item>
+        <item > 3. 광고</item>
+        <item > 4. 대회</item>
+        <item > 5. etc</item>
+    </string-array>
+</resources>

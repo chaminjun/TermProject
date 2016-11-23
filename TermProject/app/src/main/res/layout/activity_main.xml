@@ -5,8 +5,22 @@
     android:background="@mipmap/back">
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ceb0e7">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="MAIN"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="3">
+        android:layout_weight="3"
+        android:layout_marginTop="10dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -45,8 +59,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="5">
-            <ImageButton
-                android:id="@+id/goal_set_btn"
+            <ImageView
+                android:id="@+id/goal_set_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/goall"
@@ -57,6 +71,7 @@
                 android:layout_height="wrap_content"
                 android:text="목표량 설정하기"
                 android:textSize="8dp"
+                android:textColor="#020202"
                 android:gravity="center"
                 android:layout_weight="1"
                 />
@@ -81,8 +96,8 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="1">
-                <ImageButton
-                    android:id="@+id/record_btn"
+                <ImageView
+                    android:id="@+id/record_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -92,6 +107,7 @@
                     android:layout_height="match_parent"
                     android:text="기록하기"
                     android:textSize="20dp"
+                    android:textColor="#020202"
                     android:gravity="center"
                     android:layout_weight="6"/>
             </LinearLayout>
@@ -100,8 +116,8 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="1">
-                <ImageButton
-                    android:id="@+id/statistic_btn"
+                <ImageView
+                    android:id="@+id/statistic_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -112,6 +128,7 @@
                     android:layout_weight="6"
                     android:text="통계치 보기"
                     android:textSize="20dp"
+                    android:textColor="#020202"
                     android:gravity="center"/>
             </LinearLayout>
         </LinearLayout>
@@ -125,11 +142,10 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="1">
-                <ImageButton
-                    android:id="@+id/show_btn"
+                <ImageView
+                    android:id="@+id/show_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
                     android:layout_weight="1"
                     />
                 <TextView
@@ -137,6 +153,7 @@
                     android:layout_height="match_parent"
                     android:text="나의 행적 보기"
                     android:textSize="20dp"
+                    android:textColor="#020202"
                     android:gravity="center"
                     android:layout_weight="6"/>
             </LinearLayout>
@@ -145,8 +162,8 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="1">
-                <ImageButton
-                    android:id="@+id/init_btn"
+                <ImageView
+                    android:id="@+id/init_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -157,6 +174,7 @@
                     android:layout_weight="6"
                     android:text="기록 초기화하기"
                     android:textSize="20dp"
+                    android:textColor="#020202"
                     android:gravity="center"/>
             </LinearLayout>
         </LinearLayout>
@@ -164,8 +182,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="3">
+        android:layout_height="50dp"
+        android:background="#ceb0e7">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="20133266 차민준 My Logger"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
     </LinearLayout>
 
 </LinearLayout>
