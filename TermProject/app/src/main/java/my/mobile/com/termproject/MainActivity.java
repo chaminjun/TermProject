@@ -5,19 +5,32 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Queue;
+import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
 
     Intent go_goal, go_record, go_show, go_statistic;
     ImageView goal_set_view, record_view, show_view, statistic_view, init_view;
+    TextView goal_text;
+
+    Queue<String> goal_queue;
+    final Context context = this;
+    private String goal_queue_size[] = new String[5];
+    private int front = -1, rear = -1;
+
     MyDB mydb = new MyDB(this);
     SQLiteDatabase db;
-    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         show_view = (ImageView)findViewById(R.id.show_view);
         statistic_view = (ImageView)findViewById(R.id.statistic_view);
         init_view = (ImageView)findViewById(R.id.init_view);
+
+        goal_text = (TextView)findViewById(R.id.goal_text);
 
         //목표 설정 버튼
         goal_set_view.setOnClickListener(new View.OnClickListener() {
@@ -100,5 +115,113 @@ public class MainActivity extends AppCompatActivity {
                 alertDialog.show();
             }
         });
+
+        goal_queue = new Queue<String>() {
+            @Override
+            public boolean add(String s) {
+                goal_queue_size[++rear] = s;
+                return false;
+            }
+
+            @Override
+            public boolean offer(String s) {
+                return false;
+            }
+
+            @Override
+            public String remove() {
+                return goal_queue_size[++front];
+            }
+
+            @Override
+            public String poll() {
+                return null;
+            }
+
+            @Override
+            public String element() {
+                return null;
+            }
+
+            @Override
+            public String peek() {
+                return null;
+            }
+
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean contains(Object o) {
+                return false;
+            }
+
+            @NonNull
+            @Override
+            public Iterator<String> iterator() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @NonNull
+            @Override
+            public <T> T[] toArray(T[] a) {
+                return null;
+            }
+
+            @Override
+            public boolean remove(Object o) {
+                return false;
+            }
+
+            @Override
+            public boolean containsAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(Collection<? extends String> c) {
+                return false;
+            }
+
+            @Override
+            public boolean removeAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean retainAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public void clear() {
+
+            }
+        };
+
+        Intent intent = getIntent();
+        try{
+            goal_queue.add(intent.getExtras().getString("STUDY"));
+            goal_queue.add(intent.getExtras().getString("HEALTH"));
+            goal_queue.add(intent.getExtras().getString("CIGABEER"));
+            goal_queue.add(intent.getExtras().getString("SLEEP"));
+            goal_text.setText("공부는  "+goal_queue.remove()+"\n운동은  "+goal_queue.remove()
+                    +"\n담배와 술은  "+goal_queue.remove()+"\n잠은  "+goal_queue.remove());
+        }catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 }

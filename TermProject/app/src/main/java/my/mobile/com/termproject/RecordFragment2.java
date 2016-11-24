@@ -26,7 +26,7 @@ public class RecordFragment2 extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.activity_record_2, null);
-        edit02 = (EditText)view.findViewById(R.id.edit01);
+        edit02 = (EditText)view.findViewById(R.id.edit02);
         Spinner s2 = (Spinner)view.findViewById(R.id.spinner2);
         s2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

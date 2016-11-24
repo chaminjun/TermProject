@@ -10,6 +10,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -36,10 +37,8 @@ public class RecordActivity extends AppCompatActivity{
     Button photo_btn, save_btn, showmap_btn;
     Button record_btn_1, record_btn_2;
 
-
-
-    Double latitude = 0.0;
-    Double longitude = 0.0;
+    Double latitude = 37.547423;
+    Double longitude = 126.932058;
 
     MyDB mydb1 = new MyDB(this);
     MyDB mydb2 = new MyDB(this);
@@ -62,6 +61,8 @@ public class RecordActivity extends AppCompatActivity{
         save_btn = (Button)findViewById(R.id.save_btn);
         showmap_btn = (Button)findViewById(R.id.showmap_btn);
 
+
+
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,8 +72,8 @@ public class RecordActivity extends AppCompatActivity{
                     mydb1.close();
                     RecordFragment1.edit01.setText("");
                 }else if(flag1 == 0 && flag2 == 1){
-                    mydb1.insert(latitude, longitude, RecordFragment2.spinnernum2, RecordFragment2.edit02.getText().toString());
-                    mydb1.close();
+                    mydb2.insert(latitude, longitude, RecordFragment2.spinnernum2, RecordFragment2.edit02.getText().toString());
+                    mydb2.close();
                     RecordFragment2.edit02.setText("");
                 }
             }
@@ -90,7 +91,8 @@ public class RecordActivity extends AppCompatActivity{
         photo_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent,1);
             }
         });
         startLocationService();
