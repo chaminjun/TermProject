@@ -18,6 +18,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import static my.mobile.com.termproject.RecordFragment1.flag1;
 import static my.mobile.com.termproject.RecordFragment2.flag2;
 
@@ -100,14 +102,14 @@ public class RecordActivity extends AppCompatActivity{
     }
     public void rOnclick(View v) {
         switch (v.getId()) {
-            case R.id.record_btn_1:    //Analog btn 클릭 시
+            case R.id.record_btn_1:
                 transaction = manager.beginTransaction();       //transaction 시작하겠다.
                 transaction.remove(frag1);
                 transaction.remove(frag2);
                 transaction.add(R.id.record_linear, frag1);         //fragment 추가하겠다.
                 transaction.commit();                           //transaction을 실행해라.
                 break;
-            case R.id.record_btn_2:    //Digital btn 클릭 시
+            case R.id.record_btn_2:
                 transaction = manager.beginTransaction();
                 transaction.remove(frag1);
                 transaction.remove(frag2);
@@ -117,6 +119,8 @@ public class RecordActivity extends AppCompatActivity{
         }
     }
     private void startLocationService() {
+        LatLng curPoint = new LatLng(latitude, longitude);
+
         // 위치 관리자 객체 참조
         LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 

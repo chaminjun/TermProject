@@ -3,15 +3,18 @@ package my.mobile.com.termproject;
 /**
  * Created by chaminjun on 2016. 11. 22..
  */
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
 
@@ -22,6 +25,9 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
     MyDB mydb2 = new MyDB(this);
     ArrayList<MyDataBaseIntent> mbi = new ArrayList<>();
     String category2[] = {"공연", "시위", "광고", "대회", "etc"};
+    private PolylineOptions polylineOptions = new PolylineOptions();
+    Double latitude = 37.547423;
+    Double longitude = 126.932058;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +48,10 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        LatLng curPoint = new LatLng(latitude, longitude);
+
         map = googleMap;
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 15));
 
         mydb2.showMyMap(mbi);
 
@@ -54,6 +63,18 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
             marker.draggable(true);
 
             map.addMarker(marker);
+        }
+        if(ShowActivity.querycount == 1){
+            polylineOptions.color(Color.BLUE);
+            polylineOptions.width(5);
+            try{
+                for(int i = 0; i < mbi.size(); i++) {
+                    polylineOptions.add(new LatLng(mbi.get(i).latitude, mbi.get(i).longitude));
+                    map.addPolyline(polylineOptions);
+                }
+            }catch (IndexOutOfBoundsException e){
+                e.printStackTrace();
+            }
         }
         mydb2.close();
 

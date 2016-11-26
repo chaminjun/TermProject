@@ -18,7 +18,6 @@ import static my.mobile.com.termproject.RecordFragment1.flag1;
  */
 
 public class RecordFragment2 extends Fragment{
-
     static int spinnernum2 = 0;
     static EditText edit02;
     static int flag2 = 0;
