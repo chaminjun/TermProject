@@ -32,7 +32,7 @@ public class RecordFragment2 extends Fragment{
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 ((TextView) parent.getChildAt(0)).setTextColor(Color.RED);
-                spinnernum2 = position;
+                spinnernum2 = position + 5;
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}

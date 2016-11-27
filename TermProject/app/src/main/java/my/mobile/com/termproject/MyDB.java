@@ -20,7 +20,8 @@ public class MyDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE database (_id INTEGER PRIMARY KEY AUTOINCREMENT, latitude REAL , longitude REAL , category INTEGER ,  whatido TEXT);";
+        String sql = "CREATE TABLE database (_id INTEGER PRIMARY KEY AUTOINCREMENT, latitude REAL , "
+                + "longitude REAL , category INTEGER ,  whatido TEXT);";
         db.execSQL(sql);
     }
 

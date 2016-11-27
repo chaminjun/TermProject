@@ -40,7 +40,21 @@
 
  할 일
   1. GoalActivity에서 intent로 MainActivity 이동 후 이전 버튼 누르면 GoalActivity가 소멸되지 않고 그대로 있음=> 소멸해야함(내부데이터로 저장해봐야겠음)
-  2. StatisticActiviy 구현해야함(Bar그래프 오픈소스 찾아보기)
+  2. StatisticActivity 구현해야함(Bar그래프 오픈소스 찾아보기)
   3. DB에 현재 시간 추가하고 marker에 시간과 카테고리 뜨도록 수정
   4. 가능하다면 MyDB 하나 더 생성하여 일주일치를 기록하게끔 해보자
   5. Splash 이미지 다른거 찾아보기
+
+2016년 11.28(오전 01시 50분)
+
+ 한 일
+  1. StatisticActivity Bar그래프 이용하여 한 일과 이벤트 각각 통계치 보여주도록 구현
+
+ 할 일
+  1. GoalActivity에서 intent로 MainActivity 이동 후 이전 버튼 누르면 GoalActivity가 소멸되지 않고 그대로 있음=> 소멸해야함(내부데이터로 저장해봐야겠음)
+  2. DB에 현재 시간 추가하고 marker에 시간과 카테고리 뜨도록 수정
+  3. 가능하다면 MyDB 하나 더 생성하여 일주일치를 기록하게끔 해보자
+  4. Splash 이미지 다른거 찾아보기
+  5. 만보계 어디에 연결할지 정하고 연결하기
+  6. 스톱워치 기능을 추가하여 각 일을 얼마만큼 하는지 저장해보자(RecordActivity)
+  7. 오늘의 날씨를 받아와서 보여주도록 구현 (ShowActivity)
