@@ -3,22 +3,34 @@ package my.mobile.com.termproject;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.LatLng;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URI;
+import java.util.Calendar;
 
 import static my.mobile.com.termproject.RecordFragment1.flag1;
 import static my.mobile.com.termproject.RecordFragment2.flag2;
@@ -36,14 +48,29 @@ public class RecordActivity extends AppCompatActivity{
 
     Intent gomap1, gomap2;
 
-    Button photo_btn, save_btn, showmap_btn;
+    Button photo_btn, gallery_btn, save_btn, showmap_btn;
     Button record_btn_1, record_btn_2;
+    Button btnstart, btnstop, btnreset;
+
+    ImageView gallery_img;
+    Chronometer chrono;
 
     Double latitude = 37.547423;
     Double longitude = 126.932058;
 
+    int hour = 0;
+    int minute = 0;
+    String photo_str = "";
+
     MyDB mydb1 = new MyDB(this);
     MyDB mydb2 = new MyDB(this);
+
+    Calendar timec;
+
+    private static final int REQ_CODE_PICK_PICTURE = 2;
+
+    static int record_chrono_time_flag = 0;
+    static float record_chrono_time = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,24 +84,86 @@ public class RecordActivity extends AppCompatActivity{
         gomap1 = new Intent(getApplicationContext(), MapActivity1.class);
         gomap2 = new Intent(getApplicationContext(), MapActivity2.class);
 
+        btnstart = (Button)findViewById(R.id.btnstart);
+        btnstop = (Button)findViewById(R.id.btnstop);
+        btnreset = (Button)findViewById(R.id.btnreset);
         record_btn_1 = (Button)findViewById(R.id.record_btn_1);
         record_btn_2 = (Button)findViewById(R.id.record_btn_2);
         photo_btn = (Button)findViewById(R.id.photo_btn);
+        gallery_btn = (Button)findViewById(R.id.gallery_btn);
         save_btn = (Button)findViewById(R.id.save_btn);
         showmap_btn = (Button)findViewById(R.id.showmap_btn);
 
+        gallery_img = (ImageView)findViewById(R.id.gallery_img);
 
+        chrono = (Chronometer)findViewById(R.id.chrono);
+
+        save_btn.setEnabled(false);
+
+        btnstart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int stoppedMilliseconds = 0;
+
+                String chronoText = chrono.getText().toString();
+                String array[] = chronoText.split(":");
+                if (array.length == 2) {
+                    stoppedMilliseconds = Integer.parseInt(array[0]) * 60 * 1000
+                            + Integer.parseInt(array[1]) * 1000;
+                } else if (array.length == 3) {
+                    stoppedMilliseconds = Integer.parseInt(array[0]) * 60 * 60 * 1000
+                            + Integer.parseInt(array[1]) * 60 * 1000
+                            + Integer.parseInt(array[2]) * 1000;
+                }
+
+                chrono.setBase(SystemClock.elapsedRealtime() - stoppedMilliseconds);
+                chrono.start();
+                save_btn.setEnabled(false);
+            }
+        });
+
+        btnstop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chrono.stop();
+                float stoppedMilliseconds = 0;
+
+                String chronoText = chrono.getText().toString();
+                String array[] = chronoText.split(":");
+                if (array.length == 2) {
+                    stoppedMilliseconds = Integer.parseInt(array[0]) * 60
+                            + Integer.parseInt(array[1]);
+                } else if (array.length == 3) {
+                    stoppedMilliseconds = Integer.parseInt(array[0]) * 60 * 60
+                            + Integer.parseInt(array[1]) * 60
+                            + Integer.parseInt(array[2]);
+                }
+                record_chrono_time_flag = 1;
+                record_chrono_time = stoppedMilliseconds;
+                save_btn.setEnabled(true);
+            }
+        });
+        btnreset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chrono.setBase(SystemClock.elapsedRealtime());
+            }
+        });
 
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startLocationService();
+                nowTime();
+                save_btn.setEnabled(true);
                 if(flag1 == 1 && flag2 == 0) {
-                    mydb1.insert(latitude, longitude, RecordFragment1.spinnernum1, RecordFragment1.edit01.getText().toString());
+                    mydb1.insert(hour, minute, latitude, longitude, RecordFragment1.spinnernum1,
+                            RecordFragment1.edit01.getText().toString(), record_chrono_time, photo_str);
                     mydb1.close();
                     RecordFragment1.edit01.setText("");
                 }else if(flag1 == 0 && flag2 == 1){
-                    mydb2.insert(latitude, longitude, RecordFragment2.spinnernum2, RecordFragment2.edit02.getText().toString());
+                    mydb2.insert(hour, minute, latitude, longitude, RecordFragment2.spinnernum2,
+                            RecordFragment2.edit02.getText().toString(), record_chrono_time, photo_str);
                     mydb2.close();
                     RecordFragment2.edit02.setText("");
                 }
@@ -95,6 +184,17 @@ public class RecordActivity extends AppCompatActivity{
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent,1);
+
+            }
+        });
+
+        gallery_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_PICK);
+                i.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
+                i.setData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(i, REQ_CODE_PICK_PICTURE);
             }
         });
         startLocationService();
@@ -119,8 +219,6 @@ public class RecordActivity extends AppCompatActivity{
         }
     }
     private void startLocationService() {
-        LatLng curPoint = new LatLng(latitude, longitude);
-
         // 위치 관리자 객체 참조
         LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
@@ -146,16 +244,10 @@ public class RecordActivity extends AppCompatActivity{
         } catch(SecurityException ex) {
             ex.printStackTrace();
         }
-
-        Toast.makeText(getApplicationContext(), "위치 확인 시작함. 로그를 확인하세요.", Toast.LENGTH_SHORT).show();
     }
-    /**
-     * 리스너 정의
-     */
+
     private class GPSListener implements LocationListener {
-        /**
-         * 위치 정보가 확인되었을 때 호출되는 메소드
-         */
+
         public void onLocationChanged(Location location) {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
@@ -209,6 +301,30 @@ public class RecordActivity extends AppCompatActivity{
                 } else {
                     Toast.makeText(this, permissions[i] + " 권한이 승인되지 않음.", Toast.LENGTH_LONG).show();
                 }
+            }
+        }
+    }
+    public void nowTime(){
+        timec = Calendar.getInstance();
+        hour = timec.get(Calendar.HOUR_OF_DAY);
+        minute = timec.get(Calendar.MINUTE);
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQ_CODE_PICK_PICTURE) {
+            Uri iuri;
+            Bundle extras = data.getExtras();
+            try{
+                iuri= data.getData();
+                photo_str = iuri.toString();
+                MediaStore.Images.Media.getBitmap( getContentResolver(), iuri);
+                gallery_img.setImageURI(iuri);
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (NullPointerException e){
+                e.printStackTrace();
             }
         }
     }

@@ -58,11 +58,11 @@ public class ShowActivity extends Activity {
     public void qOnclick(View v) {
         switch (v.getId()) {
             case R.id.query_btn_1:
-                querycount = 0;
+                querycount = 1;
                 startActivity(gomapquery1);
                 break;
             case R.id.query_btn_2:
-                querycount = 1;
+                querycount = 2;
                 startActivity(gomapquery2);
                 break;
         }

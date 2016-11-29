@@ -5,8 +5,12 @@ package my.mobile.com.termproject;
  */
 
 public class MyDataBaseIntent {
+    int hour;
+    int minute;
     double latitude;
     double longitude;
     int category;
     String whatido;
+    float time;
+    String photo_location;
 }

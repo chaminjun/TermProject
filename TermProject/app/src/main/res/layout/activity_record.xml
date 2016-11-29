@@ -6,8 +6,52 @@
     android:background="@mipmap/back">
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <Chronometer
+                android:id="@+id/chrono"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="#000000"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <Button
+                android:id="@+id/btnstart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="시작"
+                android:textSize="8dp"/>
+            <Button
+                android:id="@+id/btnstop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="중지"
+                android:textSize="8dp"/>
+            <Button
+                android:id="@+id/btnreset"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Reset"
+                android:textSize="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#ceb0e7">
+        android:background="#ceb0e7"
+        android:layout_weight="1">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -66,35 +110,54 @@
                 android:onClick="rOnclick"/>
             </LinearLayout>
         <LinearLayout
-            android:id="@+id/record_linear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-        </LinearLayout>
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="bottom">
-            <Button
-                android:id="@+id/photo_btn"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/record_linear"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="사진 찍기"/>
-            <Button
-                android:id="@+id/save_btn"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:layout_weight="1">
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/gallery_img"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="저장하기"/>
-            <Button
-                android:id="@+id/showmap_btn"
+                android:layout_height="match_parent"
+                android:layout_weight="2">
+            </ImageView>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="맵으로"/>
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="top"
+                android:layout_weight="2">
+                <Button
+                    android:id="@+id/photo_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="사진 찍기"/>
+                <Button
+                    android:id="@+id/gallery_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="갤러리"/>
+                <Button
+                    android:id="@+id/save_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="저장하기"/>
+                <Button
+                    android:id="@+id/showmap_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="맵으로"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

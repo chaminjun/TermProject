@@ -51,20 +51,29 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
         LatLng curPoint = new LatLng(latitude, longitude);
 
         map = googleMap;
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 15));
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 12));
 
         mydb2.showMyMap(mbi);
 
         for (int i = 0; i < mbi.size(); i++) {
             MarkerOptions marker = new MarkerOptions();
             marker.position(new LatLng(mbi.get(i).latitude, mbi.get(i).longitude));
-            marker.title(category2[mbi.get(i).category]);
-            marker.snippet(mbi.get(i).whatido);
+
+            String temp_map_str = mbi.get(i).hour + "시 " + mbi.get(i).minute + "분";
+            marker.title(temp_map_str);
+
+            int temp_hours = (int)mbi.get(i).time / 3600;
+            int temp_minute = (int)mbi.get(i).time % 3600 / 60;
+            int temp_second = (int)mbi.get(i).time % 3600 % 60;
+            String temp_map_what_howmany_str = category2[mbi.get(i).category]
+                    + "(" + temp_hours + "시간 " + temp_minute + "분 " + temp_second + "초 소요)";
+            marker.snippet(temp_map_what_howmany_str);
+
             marker.draggable(true);
 
             map.addMarker(marker);
         }
-        if(ShowActivity.querycount == 1){
+        if(ShowActivity.querycount == 2){
             polylineOptions.color(Color.BLUE);
             polylineOptions.width(5);
             try{
