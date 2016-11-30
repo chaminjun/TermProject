@@ -20,10 +20,12 @@ public class ShowActivity extends Activity {
     CalendarView calView;
     TextView caltext;
     String strampm;
-    Button query_btn_1, query_btn_2;
+    Button query_btn_1, query_btn_2, query_btn_3, query_btn_4;
     Intent gomapquery1, gomapquery2;
+    Intent golistquery1, golistquery2;
 
-    static int querycount = 0;
+    static int querycountmap = 0;
+    static int querycountlist = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +36,14 @@ public class ShowActivity extends Activity {
         caltext = (TextView)findViewById(R.id.caltext);
         query_btn_1 = (Button)findViewById(R.id.query_btn_1);
         query_btn_2 = (Button)findViewById(R.id.query_btn_2);
+        query_btn_3 = (Button)findViewById(R.id.query_btn_3);
+        query_btn_4 = (Button)findViewById(R.id.query_btn_4);
+
         gomapquery1 = new Intent(ShowActivity.this, MapActivity1.class);
         gomapquery2 = new Intent(ShowActivity.this, MapActivity2.class);
+
+        golistquery1 = new Intent(ShowActivity.this, ShowListActivity1.class);
+        golistquery2 = new Intent(ShowActivity.this, ShowListActivity2.class);
 
         calView.setEnabled(false);
 
@@ -58,12 +66,20 @@ public class ShowActivity extends Activity {
     public void qOnclick(View v) {
         switch (v.getId()) {
             case R.id.query_btn_1:
-                querycount = 1;
+                querycountmap = 1;
                 startActivity(gomapquery1);
                 break;
             case R.id.query_btn_2:
-                querycount = 2;
+                querycountmap = 2;
                 startActivity(gomapquery2);
+                break;
+            case R.id.query_btn_3:
+                querycountlist = 1;
+                startActivity(golistquery1);
+                break;
+            case R.id.query_btn_4:
+                querycountlist = 2;
+                startActivity(golistquery2);
                 break;
         }
     }

@@ -14,8 +14,8 @@ import java.util.ArrayList;
 
 public class MyDB extends SQLiteOpenHelper {
 
-    public MyDB(Context context){
-        super(context, "MyLocation", null, 1);
+    public MyDB(Context context, String name){
+        super(context, name, null, 1);
     }
 
     @Override

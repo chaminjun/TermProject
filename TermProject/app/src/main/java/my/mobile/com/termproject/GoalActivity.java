@@ -17,11 +17,6 @@ public class GoalActivity extends Activity{
 
     Button goal_set_btn;
     RadioGroup radio_study, radio_health, radio_cb, radio_sleep;
-    RadioButton radio_study_btn1, radio_study_btn2, radio_study_btn3, radio_study_btn4
-            , radio_health_btn1, radio_health_btn2, radio_health_btn3, radio_health_btn4
-            , radio_cb_btn1, radio_cb_btn2, radio_cb_btn3, radio_cb_btn4
-            , radio_sleep_btn1, radio_sleep_btn2, radio_sleep_btn3, radio_sleep_btn4;
-
     String study_set = "";
     String health_set = "";
     String cb_set = "";
@@ -39,41 +34,10 @@ public class GoalActivity extends Activity{
         radio_cb = (RadioGroup)findViewById(R.id.radio_cb);
         radio_sleep = (RadioGroup)findViewById(R.id.radio_sleep);
 
-
-        radio_study_btn1 = (RadioButton)findViewById(R.id.radio_study_btn1);
-        radio_study_btn2 = (RadioButton)findViewById(R.id.radio_study_btn2);
-        radio_study_btn3 = (RadioButton)findViewById(R.id.radio_study_btn3);
-        radio_study_btn4 = (RadioButton)findViewById(R.id.radio_study_btn4);
-
-        radio_health_btn1 = (RadioButton)findViewById(R.id.radio_health_btn1);
-        radio_health_btn2 = (RadioButton)findViewById(R.id.radio_health_btn2);
-        radio_health_btn3 = (RadioButton)findViewById(R.id.radio_health_btn3);
-        radio_health_btn4 = (RadioButton)findViewById(R.id.radio_health_btn4);
-
-        radio_cb_btn1 = (RadioButton)findViewById(R.id.radio_cb_btn1);
-        radio_cb_btn2 = (RadioButton)findViewById(R.id.radio_cb_btn2);
-        radio_cb_btn3 = (RadioButton)findViewById(R.id.radio_cb_btn3);
-        radio_cb_btn4 = (RadioButton)findViewById(R.id.radio_cb_btn4);
-
-        radio_sleep_btn1 = (RadioButton)findViewById(R.id.radio_sleep_btn1);
-        radio_sleep_btn2 = (RadioButton)findViewById(R.id.radio_sleep_btn2);
-        radio_sleep_btn3 = (RadioButton)findViewById(R.id.radio_sleep_btn3);
-        radio_sleep_btn4 = (RadioButton)findViewById(R.id.radio_sleep_btn4);
-
         radio_study.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton selected_radio_study_btn = (RadioButton) findViewById(checkedId);
-                switch (checkedId) {
-                    case R.id.radio_study_btn1:
-                        break;
-                    case R.id.radio_study_btn2:
-                        break;
-                    case R.id.radio_study_btn3:
-                        break;
-                    case R.id.radio_study_btn4:
-                        break;
-                }
                 study_set = selected_radio_study_btn.getText().toString();
             }
         });
@@ -81,16 +45,6 @@ public class GoalActivity extends Activity{
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton selected_radio_health_btn = (RadioButton) findViewById(checkedId);
-                switch (checkedId) {
-                    case R.id.radio_health_btn1:
-                        break;
-                    case R.id.radio_health_btn2:
-                        break;
-                    case R.id.radio_health_btn3:
-                        break;
-                    case R.id.radio_health_btn4:
-                        break;
-                }
                 health_set = selected_radio_health_btn.getText().toString();
             }
         });
@@ -98,16 +52,6 @@ public class GoalActivity extends Activity{
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton selected_radio_cb_btn = (RadioButton) findViewById(checkedId);
-                switch (checkedId) {
-                    case R.id.radio_cb_btn1:
-                        break;
-                    case R.id.radio_cb_btn2:
-                        break;
-                    case R.id.radio_cb_btn3:
-                        break;
-                    case R.id.radio_cb_btn4:
-                        break;
-                }
                 cb_set = selected_radio_cb_btn.getText().toString();
             }
         });
@@ -115,16 +59,6 @@ public class GoalActivity extends Activity{
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton selected_radio_sleep_btn = (RadioButton) findViewById(checkedId);
-                switch (checkedId) {
-                    case R.id.radio_sleep_btn1:
-                        break;
-                    case R.id.radio_sleep_btn2:
-                        break;
-                    case R.id.radio_sleep_btn3:
-                        break;
-                    case R.id.radio_sleep_btn4:
-                        break;
-                }
                 sleep_set = selected_radio_sleep_btn.getText().toString();
             }
         });

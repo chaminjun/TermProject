@@ -18,8 +18,7 @@ import java.util.ArrayList;
 
 public class StatisticActivity extends Activity{
 
-    MyDB mydb1 = new MyDB(this);
-    MyDB mydb2 = new MyDB(this);
+
     ArrayList<MyDataBaseIntent> mbi1 = new ArrayList<>();
     ArrayList<MyDataBaseIntent> mbi2 = new ArrayList<>();
     float num_study = 0f;
@@ -58,7 +57,7 @@ public class StatisticActivity extends Activity{
         ArrayList<String> do_labels = new ArrayList<>();
         ArrayList<String> event_labels = new ArrayList<>();
 
-        mydb1.showMyMap(mbi1);
+        MainActivity.mydb1.showMyMap(mbi1);
         for (int i = 0; i < mbi1.size(); i++) {
             int temp_num = mbi1.get(i).category;
             switch (temp_num) {
@@ -79,7 +78,7 @@ public class StatisticActivity extends Activity{
                         break;
             }
         }
-        mydb2.showMyMap(mbi2);
+        MainActivity.mydb2.showMyMap(mbi2);
         for (int i = 0; i < mbi2.size(); i++) {
             int temp_num = mbi2.get(i).category;
             switch (temp_num) {

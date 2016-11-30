@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/back">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="이벤트 리스트 뷰"
+        android:textColor="#000000"
+        android:background="#ceb0e7"
+        android:gravity="center"/>
+    <ListView
+        android:id="@+id/query_List2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#000000"
+        android:dividerHeight="1dp"
+        ></ListView>
+</LinearLayout>

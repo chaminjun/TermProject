@@ -62,8 +62,8 @@ public class RecordActivity extends AppCompatActivity{
     int minute = 0;
     String photo_str = "";
 
-    MyDB mydb1 = new MyDB(this);
-    MyDB mydb2 = new MyDB(this);
+//    MyDB mydb1 = new MyDB(this);
+//    MyDB mydb2 = new MyDB(this);
 
     Calendar timec;
 
@@ -157,14 +157,14 @@ public class RecordActivity extends AppCompatActivity{
                 nowTime();
                 save_btn.setEnabled(true);
                 if(flag1 == 1 && flag2 == 0) {
-                    mydb1.insert(hour, minute, latitude, longitude, RecordFragment1.spinnernum1,
+                    MainActivity.mydb1.insert(hour, minute, latitude, longitude, RecordFragment1.spinnernum1,
                             RecordFragment1.edit01.getText().toString(), record_chrono_time, photo_str);
-                    mydb1.close();
+                    MainActivity.mydb1.close();
                     RecordFragment1.edit01.setText("");
                 }else if(flag1 == 0 && flag2 == 1){
-                    mydb2.insert(hour, minute, latitude, longitude, RecordFragment2.spinnernum2,
+                    MainActivity.mydb2.insert(hour, minute, latitude, longitude, RecordFragment2.spinnernum2,
                             RecordFragment2.edit02.getText().toString(), record_chrono_time, photo_str);
-                    mydb2.close();
+                    MainActivity.mydb2.close();
                     RecordFragment2.edit02.setText("");
                 }
             }
@@ -312,7 +312,6 @@ public class RecordActivity extends AppCompatActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQ_CODE_PICK_PICTURE) {
             Uri iuri;
-            Bundle extras = data.getExtras();
             try{
                 iuri= data.getData();
                 photo_str = iuri.toString();

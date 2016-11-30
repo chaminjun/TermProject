@@ -60,7 +60,8 @@
         <activity android:name=".StatisticActivity"/>
         <activity android:name=".MapActivity1"/>
         <activity android:name=".MapActivity2"/>
-        <!--<activity android:name=".ShowListActivity"/>-->
+        <activity android:name=".ShowListActivity1"/>
+        <activity android:name=".ShowListActivity2"/>
 
     </application>
 

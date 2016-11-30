@@ -22,20 +22,21 @@ import java.util.ArrayList;
 public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap map;
-    MyDB mydb2 = new MyDB(this);
+    private PolylineOptions polylineOptions = new PolylineOptions();
+
     ArrayList<MyDataBaseIntent> mbi = new ArrayList<>();
     String category2[] = {"공연", "시위", "광고", "대회", "etc"};
-    private PolylineOptions polylineOptions = new PolylineOptions();
+
     Double latitude = 37.547423;
     Double longitude = 126.932058;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map1);
+        setContentView(R.layout.activity_map);
 
         MapFragment mapFragment = (MapFragment) getFragmentManager()
-                .findFragmentById(R.id.map1);
+                .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         // 일부 단말의 문제로 인해 초기화 코드 추가
@@ -53,7 +54,7 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
         map = googleMap;
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 12));
 
-        mydb2.showMyMap(mbi);
+        MainActivity.mydb2.showMyMap(mbi);
 
         for (int i = 0; i < mbi.size(); i++) {
             MarkerOptions marker = new MarkerOptions();
@@ -65,7 +66,7 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
             int temp_hours = (int)mbi.get(i).time / 3600;
             int temp_minute = (int)mbi.get(i).time % 3600 / 60;
             int temp_second = (int)mbi.get(i).time % 3600 % 60;
-            String temp_map_what_howmany_str = category2[mbi.get(i).category]
+            String temp_map_what_howmany_str = category2[mbi.get(i).category % 5]
                     + "(" + temp_hours + "시간 " + temp_minute + "분 " + temp_second + "초 소요)";
             marker.snippet(temp_map_what_howmany_str);
 
@@ -73,7 +74,7 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
 
             map.addMarker(marker);
         }
-        if(ShowActivity.querycount == 2){
+        if(ShowActivity.querycountmap == 2){
             polylineOptions.color(Color.BLUE);
             polylineOptions.width(5);
             try{
@@ -85,7 +86,7 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
                 e.printStackTrace();
             }
         }
-        mydb2.close();
+        MainActivity.mydb2.close();
 
     }
 }

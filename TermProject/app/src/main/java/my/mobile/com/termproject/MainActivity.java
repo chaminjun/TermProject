@@ -29,8 +29,10 @@ public class MainActivity extends AppCompatActivity {
     private String goal_queue_size[] = new String[5];
     private int front = -1, rear = -1;
 
-    MyDB mydb = new MyDB(this);
-    SQLiteDatabase db;
+    static MyDB mydb1;
+    static MyDB mydb2;
+    SQLiteDatabase db1;
+    SQLiteDatabase db2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
         init_view = (ImageView)findViewById(R.id.init_view);
 
         goal_text = (TextView)findViewById(R.id.goal_text);
+
+        mydb1 = new MyDB(getApplicationContext(), "task");
+        mydb2 = new MyDB(getApplicationContext(), "event");
 
         //목표 설정 버튼
         goal_set_view.setOnClickListener(new View.OnClickListener() {
@@ -104,9 +109,12 @@ public class MainActivity extends AppCompatActivity {
                                             DialogInterface dialog, int id) {
                                         dialog.cancel();
                                         Toast.makeText(getApplicationContext(), "성공적으로 초기화 되었습니다.", Toast.LENGTH_SHORT).show();
-                                        db = mydb.getWritableDatabase();
-                                        mydb.onUpgrade(db, 1, 2);
-                                        db.close();
+                                        db1 = mydb1.getWritableDatabase();
+                                        mydb1.onUpgrade(db1, 1, 2);
+                                        db1.close();
+                                        db2 = mydb2.getWritableDatabase();
+                                        mydb2.onUpgrade(db2, 1, 2);
+                                        db2.close();
                                     }
                                 });
                 // 다이얼로그 생성
