@@ -2,12 +2,14 @@ package my.mobile.com.termproject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -26,6 +28,10 @@ public class ShowActivity extends Activity {
 
     static int querycountmap = 0;
     static int querycountlist = 0;
+    static ArrayList<Integer> tagdistance = new ArrayList<>();
+    static ArrayList<Integer> eventdistance = new ArrayList<>();
+
+    ArrayList<MyDataBaseIntent> mbi = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,10 @@ public class ShowActivity extends Activity {
 
         calView.setEnabled(false);
 
+        showToday();
+    }
+
+    public void showToday(){
         int intampm = Calendar.AM_PM;
 
         if(intampm == 0) {
@@ -75,16 +85,34 @@ public class ShowActivity extends Activity {
                 break;
             case R.id.query_btn_3:
                 querycountlist = 1;
+                walkdistance(MainActivity.mydb1, tagdistance);
                 startActivity(golistquery1);
                 break;
             case R.id.query_btn_4:
                 querycountlist = 2;
+                walkdistance(MainActivity.mydb2, eventdistance);
                 startActivity(golistquery2);
                 break;
         }
     }
+    public void walkdistance(MyDB mydb, ArrayList<Integer> distanceList) {
+        mydb.showMyMap(mbi);
+        for (int i = 0; i < mbi.size(); i++) {
+            if (i == mbi.size() - 1) {
+                distanceList.add(0);
+            } else {
+                Location start = new Location("start");
+                start.setLatitude(mbi.get(i).latitude);
+                start.setLongitude(mbi.get(i).longitude);
 
+                Location end = new Location("end");
+                end.setLatitude(mbi.get(i + 1).latitude);
+                end.setLongitude(mbi.get(i + 1).longitude);
 
-
+                int distance = (int) start.distanceTo(end);
+                distanceList.add(distance);
+            }
+        }
+    }
 }
 

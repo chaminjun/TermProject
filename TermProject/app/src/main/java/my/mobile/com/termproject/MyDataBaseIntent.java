@@ -5,6 +5,7 @@ package my.mobile.com.termproject;
  */
 
 public class MyDataBaseIntent {
+    int order;
     int hour;
     int minute;
     double latitude;

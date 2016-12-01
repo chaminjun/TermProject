@@ -41,8 +41,10 @@ import static my.mobile.com.termproject.RecordFragment2.flag2;
 
 public class RecordActivity extends AppCompatActivity{
 
-    FragmentManager manager;            //fragment를 관리하는 객체
-    FragmentTransaction transaction;    //추가, 삭제, replace를 관리하는 객체
+    //fragment를 관리하는 객체
+    FragmentManager manager;
+    //추가, 삭제, replace를 관리하는 객체
+    FragmentTransaction transaction;
 
     Fragment frag1, frag2;
 
@@ -62,9 +64,6 @@ public class RecordActivity extends AppCompatActivity{
     int minute = 0;
     String photo_str = "";
 
-//    MyDB mydb1 = new MyDB(this);
-//    MyDB mydb2 = new MyDB(this);
-
     Calendar timec;
 
     private static final int REQ_CODE_PICK_PICTURE = 2;
@@ -77,29 +76,40 @@ public class RecordActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
 
+        //한 일과 이벤트 각각의 fragment
         manager = (FragmentManager)getFragmentManager();
         frag1 = new RecordFragment1();
         frag2 = new RecordFragment2();
 
+        //한 일과 이벤트에 따라 각기 다른 MapActivity를 보여주도록하는 intent
         gomap1 = new Intent(getApplicationContext(), MapActivity1.class);
         gomap2 = new Intent(getApplicationContext(), MapActivity2.class);
 
+        //Chronometer객체화
+        chrono = (Chronometer)findViewById(R.id.chrono);
+
+        //Chronometer 버튼 3개
         btnstart = (Button)findViewById(R.id.btnstart);
         btnstop = (Button)findViewById(R.id.btnstop);
         btnreset = (Button)findViewById(R.id.btnreset);
+
+        //한 일과 이벤트에 따라 다른 fragment를 보여주기 위한 버튼
         record_btn_1 = (Button)findViewById(R.id.record_btn_1);
         record_btn_2 = (Button)findViewById(R.id.record_btn_2);
+
+        //사진찍기, 갤러리 불러오기, 저장하기, 맵으로 보여주기 버튼
         photo_btn = (Button)findViewById(R.id.photo_btn);
         gallery_btn = (Button)findViewById(R.id.gallery_btn);
         save_btn = (Button)findViewById(R.id.save_btn);
         showmap_btn = (Button)findViewById(R.id.showmap_btn);
 
+        //갤러리에서 이미지를 잘 가지고 있는지 확인할 수 있는 ImageView설정
         gallery_img = (ImageView)findViewById(R.id.gallery_img);
 
-        chrono = (Chronometer)findViewById(R.id.chrono);
-
+        //일반적으로 저장을 못하고 시간이 입력되었을때만 클릭가능하도록 false로 설정 해놓음
         save_btn.setEnabled(false);
 
+        //Chronometer 시작 버튼
         btnstart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,7 +131,10 @@ public class RecordActivity extends AppCompatActivity{
                 save_btn.setEnabled(false);
             }
         });
-
+        /*Chronometer 중지 버튼
+          중지를 했을때만 저장할 수 있게끔 record_chrono_time_flag를 이때 1로 바꿔주고
+          save_btn.setEnabled(true)로 변경
+         */
         btnstop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,6 +156,7 @@ public class RecordActivity extends AppCompatActivity{
                 save_btn.setEnabled(true);
             }
         });
+        //Chronometer 리셋 버튼
         btnreset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,6 +164,9 @@ public class RecordActivity extends AppCompatActivity{
             }
         });
 
+        /* 저장버튼 : 위치요청 시작 및 현재 시간 알아옴
+                    flag1과 flag2를 통해 어떤 db에 저장할지 결정
+         */
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,6 +186,8 @@ public class RecordActivity extends AppCompatActivity{
                 }
             }
         });
+
+        //맵으로 보여주기 버튼 : flag1과 flag2를 통해 어떤 MapActivity로 갈지 설정
         showmap_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,6 +198,8 @@ public class RecordActivity extends AppCompatActivity{
                 }
             }
         });
+
+        //사진 찍기 버튼
         photo_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -188,6 +209,7 @@ public class RecordActivity extends AppCompatActivity{
             }
         });
 
+        //갤러리 불러오기 버튼
         gallery_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,6 +222,7 @@ public class RecordActivity extends AppCompatActivity{
         startLocationService();
         checkDangerousPermissions();
     }
+    //한 일과 이벤트 각각의 버튼에 따라 어떻게 fragment를 보여줄지
     public void rOnclick(View v) {
         switch (v.getId()) {
             case R.id.record_btn_1:
@@ -304,11 +327,14 @@ public class RecordActivity extends AppCompatActivity{
             }
         }
     }
+
+    //현재 시간의 시, 분, 초를 보여주는 함수
     public void nowTime(){
         timec = Calendar.getInstance();
         hour = timec.get(Calendar.HOUR_OF_DAY);
         minute = timec.get(Calendar.MINUTE);
     }
+    //갤러리에서 가져온 이미지를 uri형식으로 저장
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQ_CODE_PICK_PICTURE) {
             Uri iuri;
@@ -317,7 +343,6 @@ public class RecordActivity extends AppCompatActivity{
                 photo_str = iuri.toString();
                 MediaStore.Images.Media.getBitmap( getContentResolver(), iuri);
                 gallery_img.setImageURI(iuri);
-
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -327,7 +352,6 @@ public class RecordActivity extends AppCompatActivity{
             }
         }
     }
-
 }
 
 

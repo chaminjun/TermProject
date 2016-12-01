@@ -45,6 +45,7 @@ public class MyDB extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM database", null);
 
         while (cursor.moveToNext()) {
+            String order = cursor.getString(0);
             int hour = cursor.getInt(cursor.getColumnIndex("hour"));
             int minute = cursor.getInt(cursor.getColumnIndex("minute"));
             Double latitude = cursor.getDouble(cursor.getColumnIndex("latitude"));
@@ -56,6 +57,7 @@ public class MyDB extends SQLiteOpenHelper {
 
             MyDataBaseIntent mbi = new MyDataBaseIntent();
 
+            mbi.order = Integer.parseInt(order);
             mbi.hour = hour;
             mbi.minute = minute;
             mbi.latitude = latitude ;

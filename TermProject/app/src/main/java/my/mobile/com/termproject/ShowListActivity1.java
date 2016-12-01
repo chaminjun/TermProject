@@ -3,8 +3,11 @@ package my.mobile.com.termproject;
 import android.app.Activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.Location;
 import android.os.Bundle;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 /**
  * Created by chaminjun on 2016. 11. 30..
@@ -16,6 +19,7 @@ public class ShowListActivity1 extends Activity {
     ShowListAdapter queryAdapter;
     ListView query_list1;
     Cursor cursor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,5 +49,4 @@ public class ShowListActivity1 extends Activity {
         cursor.close();
         sqlite.close();
     }
-
 }
