@@ -22,7 +22,6 @@ import java.util.ArrayList;
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap map;
-    final MyDB mydb = new MyDB(this);
     ArrayList<MyDataBaseIntent> mbi = new ArrayList<>();
     String category1[] = {"Study", "Meeting", "Health", "Eating", "etc"};
 
@@ -47,7 +46,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
 
-        mydb.showMyMap(mbi);
+        MainActivity.mydb.showMyMap(mbi);
 
         for (int i = 0; i < mbi.size(); i++) {
             MarkerOptions marker = new MarkerOptions();

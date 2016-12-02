@@ -26,6 +26,8 @@ public class ShowActivity extends Activity {
     Intent gomapquery1, gomapquery2;
     Intent golistquery1, golistquery2;
 
+    Button weather;
+
     static int querycountmap = 0;
     static int querycountlist = 0;
     static ArrayList<Integer> tagdistance = new ArrayList<>();
@@ -37,6 +39,15 @@ public class ShowActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_query);
+
+        weather = (Button)findViewById(R.id.weather);
+        weather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ShowWeatherActivity.class);
+                startActivity(intent);
+            }
+        });
 
         calView = (CalendarView)findViewById(R.id.calView);
         caltext = (TextView)findViewById(R.id.caltext);
