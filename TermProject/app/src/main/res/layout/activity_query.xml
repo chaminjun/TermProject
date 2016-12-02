@@ -150,7 +150,7 @@
                 android:background="@drawable/button"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:text="이벤트(리스트 뷰)"
+                android:text="날씨"
                 android:textSize="10dp"
                 android:textColor="#76a3d9"
                 />

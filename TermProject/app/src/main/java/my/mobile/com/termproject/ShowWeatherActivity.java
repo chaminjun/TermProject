@@ -31,12 +31,12 @@ public class ShowWeatherActivity extends AppCompatActivity {
 
         textView_shortWeather = (TextView)findViewById(R.id.shortWeather);
 
-        new ReceiveShortWeather().execute();
+        new ReceiveShowWeather().execute();
     }
 
-    public class ReceiveShortWeather extends AsyncTask<URL, Integer, Long> {
+    public class ReceiveShowWeather extends AsyncTask<URL, Integer, Long> {
 
-        ArrayList<ShowWeather> shortWeathers = new ArrayList<>();
+        ArrayList<ShowWeather> showWeathers = new ArrayList<>();
 
         protected Long doInBackground(URL... urls) {
 
@@ -63,12 +63,12 @@ public class ShowWeatherActivity extends AppCompatActivity {
         protected void onPostExecute(Long result) {
             String data = "";
 
-            for(int i=0; i<shortWeathers.size(); i++) {
-                data += shortWeathers.get(i).getHour() + " 시" +
-                        shortWeathers.get(i).getDay() + " " +
-                        shortWeathers.get(i).getTemp() + " " +
-                        shortWeathers.get(i).getWfKor() + " " +
-                        shortWeathers.get(i).getPop() + "\n";
+            for(int i=0; i<showWeathers.size(); i++) {
+                data += "시간 : "+ showWeathers.get(i).getHour() + "\t" +
+                        showWeathers.get(i).getDay() + " \t" +
+                        "온도 : " + showWeathers.get(i).getTemp() + "\t" +
+                        showWeathers.get(i).getWfKor() + " " +
+                        "강수확률 : " + showWeathers.get(i).getPop() + "\n";
             }
 
             textView_shortWeather.setText(data);
@@ -97,29 +97,29 @@ public class ShowWeatherActivity extends AppCompatActivity {
                     if (eventType == XmlPullParser.START_TAG) {
                         tagName = parser.getName();
                         if (tagName.equals("data")) {
-                            shortWeathers.add(new ShowWeather());
+                            showWeathers.add(new ShowWeather());
                             onEnd = false;
                             isItemTag1 = true;
                         }
                     } else if (eventType == XmlPullParser.TEXT && isItemTag1) {
                         if (tagName.equals("hour") && !onHour) {
-                            shortWeathers.get(i).setHour(parser.getText());
+                            showWeathers.get(i).setHour(parser.getText());
                             onHour = true;
                         }
                         if (tagName.equals("day") && !onDay) {
-                            shortWeathers.get(i).setDay(parser.getText());
+                            showWeathers.get(i).setDay(parser.getText());
                             onDay = true;
                         }
                         if (tagName.equals("temp") && !onTem) {
-                            shortWeathers.get(i).setTemp(parser.getText());
+                            showWeathers.get(i).setTemp(parser.getText());
                             onTem = true;
                         }
                         if (tagName.equals("wfKor") && !onWfKor) {
-                            shortWeathers.get(i).setWfKor(parser.getText());
+                            showWeathers.get(i).setWfKor(parser.getText());
                             onWfKor = true;
                         }
                         if (tagName.equals("pop") && !onPop) {
-                            shortWeathers.get(i).setPop(parser.getText());
+                            showWeathers.get(i).setPop(parser.getText());
                             onPop = true;
                         }
                     } else if (eventType == XmlPullParser.END_TAG) {
