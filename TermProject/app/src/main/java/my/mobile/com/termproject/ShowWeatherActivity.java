@@ -64,7 +64,7 @@ public class ShowWeatherActivity extends AppCompatActivity {
             String data = "";
 
             for(int i=0; i<shortWeathers.size(); i++) {
-                data += shortWeathers.get(i).getHour() + " " +
+                data += shortWeathers.get(i).getHour() + " 시" +
                         shortWeathers.get(i).getDay() + " " +
                         shortWeathers.get(i).getTemp() + " " +
                         shortWeathers.get(i).getWfKor() + " " +
