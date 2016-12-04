@@ -25,7 +25,7 @@
                 android:id="@+id/weather"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@mipmap/sunny"
+                android:src="@mipmap/query_weather"
                 android:onClick="weatherClick"
                 android:layout_weight="1"/>
             <TextView

@@ -41,7 +41,7 @@
             android:layout_weight="1"
             android:text="시작"
             android:textSize="8dp"
-            android:src="@mipmap/play_button1"
+            android:src="@mipmap/record_start"
             />
         <ImageView
             android:id="@+id/imgstop"
@@ -50,7 +50,7 @@
             android:layout_weight="1"
             android:text="중지"
             android:textSize="8dp"
-            android:src="@mipmap/pause_query"
+            android:src="@mipmap/record_pause"
             />
         <ImageView
             android:id="@+id/imgreset"
@@ -59,7 +59,7 @@
             android:layout_weight="1"
             android:text="Reset"
             android:textSize="8dp"
-            android:src="@mipmap/stop_query"
+            android:src="@mipmap/record_reset"
             />
     </LinearLayout>
 
