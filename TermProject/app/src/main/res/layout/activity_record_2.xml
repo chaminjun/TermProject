@@ -29,6 +29,9 @@
             android:entries="@array/category2"
             />
     </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -54,5 +57,6 @@
             android:gravity="start"
             android:textColor="#000000"/>
     </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

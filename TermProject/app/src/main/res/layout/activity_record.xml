@@ -6,61 +6,64 @@
     android:background="@mipmap/back">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="5"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <Chronometer
-                android:id="@+id/chrono"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:textColor="#000000"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <Button
-                android:id="@+id/btnstart"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="시작"
-                android:textSize="8dp"/>
-            <Button
-                android:id="@+id/btnstop"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="중지"
-                android:textSize="8dp"/>
-            <Button
-                android:id="@+id/btnreset"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Reset"
-                android:textSize="8dp"/>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ceb0e7"
-        android:layout_weight="1">
+        >
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="기록하기"
+            android:text="     기록하기"
             android:textColor="#000000"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <Chronometer
+            android:id="@+id/chrono"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:layout_weight="5"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="10dp"
+
+        >
+        <ImageView
+            android:id="@+id/imgstart"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_weight="1"
+            android:text="시작"
+            android:textSize="8dp"
+            android:src="@mipmap/play_button1"
+            />
+        <ImageView
+            android:id="@+id/imgstop"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_weight="1"
+            android:text="중지"
+            android:textSize="8dp"
+            android:src="@mipmap/pause_query"
+            />
+        <ImageView
+            android:id="@+id/imgreset"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_weight="1"
+            android:text="Reset"
+            android:textSize="8dp"
+            android:src="@mipmap/stop_query"
+            />
+    </LinearLayout>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -111,7 +114,7 @@
             </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="520dp"
             android:orientation="vertical">
             <LinearLayout
                 android:id="@+id/record_linear"
@@ -157,8 +160,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="맵으로"/>
+
             </LinearLayout>
         </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:orientation="vertical">
+
     </LinearLayout>
 </LinearLayout>
 

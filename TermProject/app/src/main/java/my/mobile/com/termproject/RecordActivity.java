@@ -3,11 +3,9 @@ package my.mobile.com.termproject;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -24,12 +22,8 @@ import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.LatLng;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URI;
 import java.util.Calendar;
 
 import static my.mobile.com.termproject.RecordFragment1.flag1;
@@ -52,7 +46,7 @@ public class RecordActivity extends AppCompatActivity{
 
     Button photo_btn, gallery_btn, save_btn, showmap_btn;
     Button record_btn_1, record_btn_2;
-    Button btnstart, btnstop, btnreset;
+    ImageView imgstart, imgstop, imgreset;
 
     ImageView gallery_img;
     Chronometer chrono;
@@ -88,10 +82,11 @@ public class RecordActivity extends AppCompatActivity{
         //Chronometer객체화
         chrono = (Chronometer)findViewById(R.id.chrono);
 
-        //Chronometer 버튼 3개
-        btnstart = (Button)findViewById(R.id.btnstart);
-        btnstop = (Button)findViewById(R.id.btnstop);
-        btnreset = (Button)findViewById(R.id.btnreset);
+        //Chronometer ImageView 3개
+        imgstart = (ImageView)findViewById(R.id.imgstart);
+        imgstop = (ImageView)findViewById(R.id.imgstop);
+        imgreset = (ImageView)findViewById(R.id.imgreset);
+
 
         //한 일과 이벤트에 따라 다른 fragment를 보여주기 위한 버튼
         record_btn_1 = (Button)findViewById(R.id.record_btn_1);
@@ -110,7 +105,7 @@ public class RecordActivity extends AppCompatActivity{
         save_btn.setEnabled(false);
 
         //Chronometer 시작 버튼
-        btnstart.setOnClickListener(new View.OnClickListener() {
+        imgstart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int stoppedMilliseconds = 0;
@@ -135,7 +130,7 @@ public class RecordActivity extends AppCompatActivity{
           중지를 했을때만 저장할 수 있게끔 record_chrono_time_flag를 이때 1로 바꿔주고
           save_btn.setEnabled(true)로 변경
          */
-        btnstop.setOnClickListener(new View.OnClickListener() {
+        imgstop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 chrono.stop();
@@ -157,12 +152,13 @@ public class RecordActivity extends AppCompatActivity{
             }
         });
         //Chronometer 리셋 버튼
-        btnreset.setOnClickListener(new View.OnClickListener() {
+        imgreset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 chrono.setBase(SystemClock.elapsedRealtime());
             }
         });
+
 
         /* 저장버튼 : 위치요청 시작 및 현재 시간 알아옴
                     flag1과 flag2를 통해 어떤 db에 저장할지 결정

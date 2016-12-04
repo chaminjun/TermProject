@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,12 +22,11 @@ public class ShowActivity extends Activity {
 
     CalendarView calView;
     TextView caltext;
+    ImageView weather;
     String strampm;
     Button query_btn_1, query_btn_2, query_btn_3, query_btn_4;
     Intent gomapquery1, gomapquery2;
     Intent golistquery1, golistquery2;
-
-    Button weather;
 
     static int querycountmap = 0;
     static int querycountlist = 0;
@@ -40,14 +40,7 @@ public class ShowActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_query);
 
-        weather = (Button)findViewById(R.id.weather);
-        weather.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ShowWeatherActivity.class);
-                startActivity(intent);
-            }
-        });
+        weather = (ImageView)findViewById(R.id.weather);
 
         calView = (CalendarView)findViewById(R.id.calView);
         caltext = (TextView)findViewById(R.id.caltext);
@@ -65,6 +58,11 @@ public class ShowActivity extends Activity {
         calView.setEnabled(false);
 
         showToday();
+    }
+
+    public void weatherClick(View v){
+        Intent intent = new Intent(getApplicationContext(), ShowWeatherActivity.class);
+        startActivity(intent);
     }
 
     public void showToday(){

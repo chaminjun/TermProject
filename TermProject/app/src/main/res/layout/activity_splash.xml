@@ -8,9 +8,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="My Life Logger"
+        android:text="My Life"
         android:textSize="30dp"
-        android:textColor="#000000"
+        android:textColor="#ef922f"
         android:textStyle="bold"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
@@ -24,7 +24,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center"
-        android:src="@mipmap/logo2" />
+        android:src="@mipmap/stick_man" />
 
     <ProgressBar
         android:id="@+id/ProgressBar"

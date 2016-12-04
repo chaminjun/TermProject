@@ -29,7 +29,7 @@ public class ShowWeatherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_weather);
 
-        textView_shortWeather = (TextView)findViewById(R.id.shortWeather);
+        textView_shortWeather = (TextView)findViewById(R.id.show_weather_textview);
 
         new ReceiveShowWeather().execute();
     }
