@@ -2,17 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/back">
+    android:background="#FFFFFF">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#ceb0e7">
+        android:background="#7ee7b6">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="목표 설정"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:textStyle="bold"/>
     </LinearLayout>
@@ -48,25 +48,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1시간"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:buttonTint="#000000"/>
                 <RadioButton
                     android:id="@+id/radio_study_btn2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2시간"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:buttonTint="#000000"/>
                 <RadioButton
                     android:id="@+id/radio_study_btn3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="3시간"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:buttonTint="#000000"/>
                 <RadioButton
                     android:id="@+id/radio_study_btn4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4시간 이상"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:buttonTint="#000000"/>
             </RadioGroup>
         </LinearLayout>
         <LinearLayout
@@ -92,25 +96,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="30분"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:buttonTint="#000000"/>
                 <RadioButton
                     android:id="@+id/radio_health_btn2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1시간"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:buttonTint="#000000"/>
                 <RadioButton
                     android:id="@+id/radio_health_btn3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1시간 30분"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:buttonTint="#000000"/>
                 <RadioButton
                     android:id="@+id/radio_health_btn4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2시간 이상"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:buttonTint="#000000"/>
             </RadioGroup>>
         </LinearLayout>
         <LinearLayout
@@ -137,25 +145,29 @@
                     android:layout_height="wrap_content"
                     android:text="안할래요"
                     android:textColor="#000000"
+                    android:buttonTint="#000000"
                     />
                 <RadioButton
                     android:id="@+id/radio_cb_btn2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="살짝만"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:buttonTint="#000000"/>
                 <RadioButton
                     android:id="@+id/radio_cb_btn3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="적당히"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:buttonTint="#000000"/>
                 <RadioButton
                     android:id="@+id/radio_cb_btn4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="미친듯이"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:buttonTint="#000000"/>
             </RadioGroup>
         </LinearLayout>
         <LinearLayout
@@ -181,25 +193,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5시간 이하"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:buttonTint="#000000"/>
                 <RadioButton
                     android:id="@+id/radio_sleep_btn2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="6시간"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:buttonTint="#000000"/>
                 <RadioButton
                     android:id="@+id/radio_sleep_btn3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="7시간"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:buttonTint="#000000"/>
                 <RadioButton
                     android:id="@+id/radio_sleep_btn4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="8시간 이상"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:buttonTint="#000000"/>
             </RadioGroup>
         </LinearLayout>
         <Button

@@ -23,12 +23,16 @@ public class MyDB extends SQLiteOpenHelper {
         String sql = "CREATE TABLE database (_id INTEGER PRIMARY KEY AUTOINCREMENT, hour INTEGER, minute INTEGER, "
                 + "latitude REAL , longitude REAL , category INTEGER ,  whatido TEXT, time FLOAT, photo_location TEXT);";
         db.execSQL(sql);
+        sql = "CREATE TABLE goaldatabase (_id INTEGER PRIMARY KEY AUTOINCREMENT, study TEXT, health TEXT, cb TEXT, sleep TEXT);";
+        db.execSQL(sql);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // 만약 member라는 테이블이 존재한다면 날려버려라.
         String sql = "DROP TABLE IF EXISTS database";
+        db.execSQL(sql);
+        sql = "DROP TABLE IF EXISTS goaldatabase";
         db.execSQL(sql);
         onCreate(db);
     }
@@ -38,6 +42,12 @@ public class MyDB extends SQLiteOpenHelper {
                 + category + ", '" + whatido + "', " + time + ", '" + photo_location + "');");
         Log.d ("SQL", "select : " + "(hour:" + hour + ")(minute:" + minute + ")(latitude:" + latitude + ")(longitude:" + longitude
                 + ")(category:" + category + ")(whatido:" + whatido + ")(time:" + time +")(photo_location: " + photo_location + ")");
+        db.close();
+    }
+    public void insertGoal(String study, String health, String cb, String sleep){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("INSERT INTO goaldatabase VALUES(NULL, '" + study + "', '" + health + "', '" + cb + "', '" + sleep + "');");
+        Log.d ("SQL", "select : " + "(study:" + study + ")(health:" + health + ")(cb:" + cb + ")(sleep:" + sleep + ")");
         db.close();
     }
     public void showMyMap (ArrayList<MyDataBaseIntent> mylist) {
@@ -68,6 +78,28 @@ public class MyDB extends SQLiteOpenHelper {
             mbi.photo_location = photo_location;
 
             mylist.add(mbi) ;
+        }
+        cursor.close();
+        db.close();
+    }
+    public void showMyGoal (ArrayList<MyGoalDataBaseIntent> mylist) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM goaldatabase", null);
+
+        while (cursor.moveToNext()) {
+            String study = cursor.getString(cursor.getColumnIndex("study"));
+            String health = cursor.getString(cursor.getColumnIndex("health"));
+            String cb = cursor.getString(cursor.getColumnIndex("cb"));
+            String sleep = cursor.getString(cursor.getColumnIndex("sleep"));
+
+            MyGoalDataBaseIntent myGoalDataBaseIntent = new MyGoalDataBaseIntent();
+
+            myGoalDataBaseIntent.study = study;
+            myGoalDataBaseIntent.health = health;
+            myGoalDataBaseIntent.cb = cb;
+            myGoalDataBaseIntent.sleep = sleep;
+
+            mylist.add(myGoalDataBaseIntent) ;
         }
         cursor.close();
         db.close();

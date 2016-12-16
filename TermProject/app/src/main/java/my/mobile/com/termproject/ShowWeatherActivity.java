@@ -64,8 +64,20 @@ public class ShowWeatherActivity extends AppCompatActivity {
             String data = "";
 
             for(int i=0; i<showWeathers.size(); i++) {
-                data += "시간 : "+ showWeathers.get(i).getHour() + "\t" +
-                        showWeathers.get(i).getDay() + " \t" +
+                String temp_day = "";
+                switch (showWeathers.get(i).getDay()){
+                    case "0":
+                        temp_day = "오늘";
+                        break;
+                    case "1":
+                        temp_day = "내일";
+                        break;
+                    case "2":
+                        temp_day = "모레";
+                        break;
+                }
+                data += temp_day + " \t" +
+                        "시간 : "+ showWeathers.get(i).getHour() + "\t" +
                         "온도 : " + showWeathers.get(i).getTemp() + "\t" +
                         showWeathers.get(i).getWfKor() + " " +
                         "강수확률 : " + showWeathers.get(i).getPop() + "\n";

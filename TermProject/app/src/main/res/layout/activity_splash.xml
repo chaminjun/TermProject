@@ -24,7 +24,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center"
-        android:src="@mipmap/splash_img" />
+        android:src="@mipmap/back4" />
 
     <ProgressBar
         android:id="@+id/ProgressBar"

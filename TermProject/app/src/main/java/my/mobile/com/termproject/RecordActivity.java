@@ -174,11 +174,13 @@ public class RecordActivity extends AppCompatActivity{
                             RecordFragment1.edit01.getText().toString(), record_chrono_time, photo_str);
                     MainActivity.mydb1.close();
                     RecordFragment1.edit01.setText("");
+                    Toast.makeText(getApplicationContext(), "성공적으로 저장되었습니다!", Toast.LENGTH_SHORT).show();
                 }else if(flag1 == 0 && flag2 == 1){
                     MainActivity.mydb2.insert(hour, minute, latitude, longitude, RecordFragment2.spinnernum2,
                             RecordFragment2.edit02.getText().toString(), record_chrono_time, photo_str);
                     MainActivity.mydb2.close();
                     RecordFragment2.edit02.setText("");
+                    Toast.makeText(getApplicationContext(), "성공적으로 저장되었습니다!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -297,18 +299,6 @@ public class RecordActivity extends AppCompatActivity{
                 break;
             }
         }
-
-        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "권한 있음", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, "권한 없음", Toast.LENGTH_LONG).show();
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0])) {
-                Toast.makeText(this, "권한 설명 필요함.", Toast.LENGTH_LONG).show();
-            } else {
-                ActivityCompat.requestPermissions(this, permissions, 1);
-            }
-        }
     }
 
     @Override
@@ -316,9 +306,7 @@ public class RecordActivity extends AppCompatActivity{
         if (requestCode == 1) {
             for (int i = 0; i < permissions.length; i++) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, permissions[i] + " 권한이 승인됨.", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(this, permissions[i] + " 권한이 승인되지 않음.", Toast.LENGTH_LONG).show();
                 }
             }
         }

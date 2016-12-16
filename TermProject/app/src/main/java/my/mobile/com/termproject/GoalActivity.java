@@ -67,10 +67,11 @@ public class GoalActivity extends Activity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GoalActivity.this, MainActivity.class);    // 보내는 클래스, 받는 클래스
-                intent.putExtra("STUDY", study_set);
-                intent.putExtra("HEALTH", health_set);
-                intent.putExtra("CIGABEER", cb_set);
-                intent.putExtra("SLEEP", sleep_set);
+//                intent.putExtra("STUDY", study_set);
+//                intent.putExtra("HEALTH", health_set);
+//                intent.putExtra("CIGABEER", cb_set);
+//                intent.putExtra("SLEEP", sleep_set);
+                MainActivity.mydb3.insertGoal(study_set, health_set, cb_set, sleep_set);
                 startActivity(intent);
             }
         });

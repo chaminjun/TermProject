@@ -38,14 +38,6 @@ public class ShowWeather {
         this.day = day;
     }
 
-    public String getReh() {
-        return reh;
-    }
-
-    public void setReh(String reh) {
-        this.reh = reh;
-    }
-
     public String getPop() {
         return pop;
     }

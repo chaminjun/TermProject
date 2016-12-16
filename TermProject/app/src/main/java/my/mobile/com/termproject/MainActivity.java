@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Queue;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView goal_set_view, record_view, show_view, statistic_view, init_view;
     TextView goal_text;
 
+    ArrayList<MyGoalDataBaseIntent> myGoalDataBaseIntents = new ArrayList<>();
+
     Queue<String> goal_queue;
     final Context context = this;
     private String goal_queue_size[] = new String[5];
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     static MyDB mydb1;
     static MyDB mydb2;
+    static MyDB mydb3;
     SQLiteDatabase db1;
     SQLiteDatabase db2;
 
@@ -58,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         //한 일과 이벤트에 따른 db 생성 및 이름 저장
         mydb1 = new MyDB(getApplicationContext(), "task");
         mydb2 = new MyDB(getApplicationContext(), "event");
+        mydb3 = new MyDB(getApplicationContext(), "goal");
 
         //목표 설정 버튼
         goal_set_view.setOnClickListener(new View.OnClickListener() {
@@ -124,112 +129,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        goal_queue = new Queue<String>() {
-            @Override
-            public boolean add(String s) {
-                goal_queue_size[++rear] = s;
-                return false;
-            }
-
-            @Override
-            public boolean offer(String s) {
-                return false;
-            }
-
-            @Override
-            public String remove() {
-                return goal_queue_size[++front];
-            }
-
-            @Override
-            public String poll() {
-                return null;
-            }
-
-            @Override
-            public String element() {
-                return null;
-            }
-
-            @Override
-            public String peek() {
-                return null;
-            }
-
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @NonNull
-            @Override
-            public Iterator<String> iterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @NonNull
-            @Override
-            public <T> T[] toArray(T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends String> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-        };
-
-        Intent intent = getIntent();
-        try{
-            goal_queue.add(intent.getExtras().getString("STUDY"));
-            goal_queue.add(intent.getExtras().getString("HEALTH"));
-            goal_queue.add(intent.getExtras().getString("CIGABEER"));
-            goal_queue.add(intent.getExtras().getString("SLEEP"));
-            goal_text.setText("공부는  "+goal_queue.remove()+"\n운동은  "+goal_queue.remove()
-                    +"\n담배와 술은  "+goal_queue.remove()+"\n잠은  "+goal_queue.remove());
-        }catch (NullPointerException e) {
-            e.printStackTrace();
+        try {
+            mydb3.showMyGoal(myGoalDataBaseIntents);
+            int order = myGoalDataBaseIntents.size()-1;
+            goal_text.setText("공부는  " + myGoalDataBaseIntents.get(order).study + "\n운동은  " + myGoalDataBaseIntents.get(order).health
+                    + "\n담배와 술은  " + myGoalDataBaseIntents.get(order).cb + "\n잠은  " + myGoalDataBaseIntents.get(order).sleep);
+        }catch(Exception e){
+            goal_text.setText("오늘의 목표를 설정해 주세요");
         }
     }
 }
