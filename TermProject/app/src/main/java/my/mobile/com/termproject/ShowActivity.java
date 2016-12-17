@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,7 +24,6 @@ public class ShowActivity extends Activity {
     CalendarView calView;
     TextView caltext;
     ImageView weather;
-    String strampm;
     Button query_btn_1, query_btn_2, query_btn_3, query_btn_4;
     Intent gomapquery1, gomapquery2;
     Intent golistquery1, golistquery2;
@@ -66,18 +66,19 @@ public class ShowActivity extends Activity {
     }
 
     public void showToday(){
-        int intampm = Calendar.AM_PM;
-
-        if(intampm == 0) {
-            strampm = "오전";
+        String str_am_pm = "";
+        int am_pm = Calendar.getInstance().get(Calendar.AM_PM);
+        if(am_pm == 0){
+            str_am_pm = "오전";
         }else{
-            strampm = "오후";
+            str_am_pm = "오후";
         }
+
         String today = Calendar.getInstance().get(Calendar.YEAR) +
                 "년 " + (Calendar.getInstance().get(Calendar.MONTH) + 1) +
                 "월 " + Calendar.getInstance().get(Calendar.DAY_OF_MONTH) +
                 "일 \n";
-        String nowtime = strampm + " " + Calendar.getInstance().get(Calendar.HOUR) +
+        String nowtime = str_am_pm + " " +Calendar.getInstance().get(Calendar.HOUR_OF_DAY) +
                 "시 " + Calendar.getInstance().get(Calendar.MINUTE) + "분 까지 남긴 행적 보기";
         caltext.setText(today + nowtime);
     }

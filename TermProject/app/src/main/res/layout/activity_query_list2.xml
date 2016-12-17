@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/back">
+    android:background="#ffffff">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -14,7 +14,7 @@
         android:id="@+id/query_List2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="#000000"
+        android:divider="#7ee7b6"
         android:dividerHeight="1dp"
         ></ListView>
 </LinearLayout>

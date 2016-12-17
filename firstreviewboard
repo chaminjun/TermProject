@@ -135,3 +135,5 @@ s
 
  한 일 
   1. GoalActivity 소멸 완료
+  2. RecordActivity에서 Fragment 이동 시 오류 났던부분 수정
+  3. ShowActivity에서 오전, 오후 오류 났던 부분 수정
