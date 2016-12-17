@@ -60,12 +60,12 @@ public class ShowListAdapter extends CursorAdapter {
         switch (ShowActivity.querycountlist) {
             case 1:
                 list_diary = hour + "시 " + minute + "분 \n" + (int) time + "초 동안\n"
-                        + category1[category] + "를 하였습니다.\n구체적으로는 " + whatido +"\n"
+                        + category1[category] + "를 함.\n" + whatido +"\n"
                         + ShowActivity.tagdistance.get(order1) + "m 이동 후 다음 일을 하였습니다.";
                 break;
             case 2:
                 list_diary = hour + "시 " + minute + "분 \n" + (int) time + "초 동안\n"
-                        + category2[category] + "를 하였습니다.\n구체적으로는 " + whatido+"\n"
+                        + category2[category] + "를 함.\n" + whatido+"\n"
                         + ShowActivity.eventdistance.get(order1) + "m 이동 후 다음 일을 하였습니다.";
                 break;
         }

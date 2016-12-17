@@ -34,6 +34,8 @@ public class ShowActivity extends Activity {
     static ArrayList<Integer> eventdistance = new ArrayList<>();
 
     ArrayList<MyDataBaseIntent> mbi = new ArrayList<>();
+    ArrayList<MyDataBaseIntent> mbi1 = new ArrayList<>();
+    ArrayList<MyDataBaseIntent> mbi2 = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +108,11 @@ public class ShowActivity extends Activity {
         }
     }
     public void walkdistance(MyDB mydb, ArrayList<Integer> distanceList) {
+        if(querycountlist == 1){
+            mbi = mbi1;
+        }else{
+            mbi = mbi2;
+        }
         mydb.showMyMap(mbi);
         for (int i = 0; i < mbi.size(); i++) {
             if (i == mbi.size() - 1) {
