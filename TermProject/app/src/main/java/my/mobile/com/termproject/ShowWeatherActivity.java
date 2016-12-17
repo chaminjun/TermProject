@@ -22,14 +22,16 @@ import java.util.ArrayList;
 
 public class ShowWeatherActivity extends AppCompatActivity {
 
-    TextView textView_shortWeather;
+    TextView show_weather_textview_today, show_weather_textview_tomorrow, show_weather_textview_next_tomorrow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_weather);
 
-        textView_shortWeather = (TextView)findViewById(R.id.show_weather_textview);
+        show_weather_textview_today = (TextView)findViewById(R.id.show_weather_textview_today);
+        show_weather_textview_tomorrow = (TextView)findViewById(R.id.show_weather_textview_tomorrow);
+        show_weather_textview_next_tomorrow = (TextView)findViewById(R.id.show_weather_textview_next_tomorrow);
 
         new ReceiveShowWeather().execute();
     }
@@ -44,9 +46,7 @@ public class ShowWeatherActivity extends AppCompatActivity {
 
             OkHttpClient client = new OkHttpClient();
 
-            Request request = new Request.Builder()
-                    .url(url)
-                    .build();
+            Request request = new Request.Builder().url(url).build();
 
             Response response = null;
 
@@ -61,29 +61,33 @@ public class ShowWeatherActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(Long result) {
-            String data = "";
+            String today_data = "";
+            String tomorrow_data = "";
+            String next_tomorrow_data = "";
 
             for(int i=0; i<showWeathers.size(); i++) {
-                String temp_day = "";
                 switch (showWeathers.get(i).getDay()){
                     case "0":
-                        temp_day = "오늘";
+                        today_data += showTextWeather(i);
                         break;
                     case "1":
-                        temp_day = "내일";
+                        tomorrow_data += showTextWeather(i);
                         break;
                     case "2":
-                        temp_day = "모레";
+                        next_tomorrow_data += showTextWeather(i);
                         break;
                 }
-                data += temp_day + " \t" +
-                        "시간 : "+ showWeathers.get(i).getHour() + "\t" +
-                        "온도 : " + showWeathers.get(i).getTemp() + "\t" +
-                        showWeathers.get(i).getWfKor() + " " +
-                        "강수확률 : " + showWeathers.get(i).getPop() + "\n";
             }
-
-            textView_shortWeather.setText(data);
+            show_weather_textview_today.setText(today_data);
+            show_weather_textview_tomorrow.setText(tomorrow_data);
+            show_weather_textview_next_tomorrow.setText(next_tomorrow_data);
+        }
+        public String showTextWeather(int index){
+            String showText = "시간 : "+ showWeathers.get(index).getHour() + "시\t" +
+                    "온도 : " + showWeathers.get(index).getTemp() + "\t" +
+                    showWeathers.get(index).getWfKor() + " " +
+                    "강수확률 : " + showWeathers.get(index).getPop() + "%\n";
+            return showText;
         }
 
         void parseXML(String xml) {

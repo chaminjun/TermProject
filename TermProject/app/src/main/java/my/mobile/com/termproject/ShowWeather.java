@@ -6,29 +6,11 @@ package my.mobile.com.termproject;
 
 public class ShowWeather {
     private String hour;  // 시간
-    private String day;
+    private String day;   // 오늘, 내일, 모레
     private String temp;  // 온도
     private String wfKor; // 상태
     private String pop; // 강수확률
-    private String reh; // 습도
-    private String tmx;
-    private String tmn;
 
-    public String getTmx() {
-        return tmx;
-    }
-
-    public void setTmx(String tmx) {
-        this.tmx = tmx;
-    }
-
-    public String getTmn() {
-        return tmn;
-    }
-
-    public void setTmn(String tmn) {
-        this.tmn = tmn;
-    }
 
     public String getDay() {
         return day;

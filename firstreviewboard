@@ -138,3 +138,4 @@ s
   2. RecordActivity에서 Fragment 이동 시 오류 났던부분 수정
   3. ShowActivity에서 오전, 오후 오류 났던 부분 수정
   4. ShowList에서 한 일과 이벤트에 따른 이동거리 부분 섞이던거 수정
+  5. ShowWeather 오늘, 내일, 모레로 좀 더 깔끔하게 수정
