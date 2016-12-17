@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,10 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Queue;
-import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,16 +22,14 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<MyGoalDataBaseIntent> myGoalDataBaseIntents = new ArrayList<>();
 
-    Queue<String> goal_queue;
     final Context context = this;
-    private String goal_queue_size[] = new String[5];
-    private int front = -1, rear = -1;
 
     static MyDB mydb1;
     static MyDB mydb2;
     static MyDB mydb3;
     SQLiteDatabase db1;
     SQLiteDatabase db2;
+    SQLiteDatabase db3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(go_goal);
+                finish();
             }
         });
         //기록하기 버튼
@@ -120,6 +114,9 @@ public class MainActivity extends AppCompatActivity {
                                         db2 = mydb2.getWritableDatabase();
                                         mydb2.onUpgrade(db2, 1, 2);
                                         db2.close();
+                                        db3 = mydb3.getWritableDatabase();
+                                        mydb3.onUpgrade(db3, 1, 2);
+                                        db3.close();
                                     }
                                 });
                 // 다이얼로그 생성
@@ -131,11 +128,12 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             mydb3.showMyGoal(myGoalDataBaseIntents);
-            int order = myGoalDataBaseIntents.size()-1;
+            int order = myGoalDataBaseIntents.size() - 1;
             goal_text.setText("공부는  " + myGoalDataBaseIntents.get(order).study + "\n운동은  " + myGoalDataBaseIntents.get(order).health
                     + "\n담배와 술은  " + myGoalDataBaseIntents.get(order).cb + "\n잠은  " + myGoalDataBaseIntents.get(order).sleep);
         }catch(Exception e){
             goal_text.setText("오늘의 목표를 설정해 주세요");
         }
     }
+
 }

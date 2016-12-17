@@ -245,7 +245,7 @@ public class RecordActivity extends AppCompatActivity{
 
         // 리스너 객체 생성
         GPSListener gpsListener = new GPSListener();
-        long minTime = 10000;
+        long minTime = 0;
         float minDistance = 0;
 
         try {

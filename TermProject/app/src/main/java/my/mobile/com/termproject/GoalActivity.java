@@ -73,6 +73,8 @@ public class GoalActivity extends Activity{
 //                intent.putExtra("SLEEP", sleep_set);
                 MainActivity.mydb3.insertGoal(study_set, health_set, cb_set, sleep_set);
                 startActivity(intent);
+                finish();
+
             }
         });
     }
