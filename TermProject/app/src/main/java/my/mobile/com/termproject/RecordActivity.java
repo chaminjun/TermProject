@@ -40,8 +40,6 @@ public class RecordActivity extends AppCompatActivity{
     //추가, 삭제, replace를 관리하는 객체
     FragmentTransaction transaction;
 
-    Fragment frag1, frag2;
-
     Intent gomap1, gomap2;
 
     Button photo_btn, gallery_btn, save_btn, showmap_btn;
@@ -65,15 +63,15 @@ public class RecordActivity extends AppCompatActivity{
     static int record_chrono_time_flag = 0;
     static float record_chrono_time = 0;
 
+    private boolean isFragment = true ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
 
         //한 일과 이벤트 각각의 fragment
-        manager = (FragmentManager)getFragmentManager();
-        frag1 = new RecordFragment1();
-        frag2 = new RecordFragment2();
+        manager = getFragmentManager();
 
         //한 일과 이벤트에 따라 각기 다른 MapActivity를 보여주도록하는 intent
         gomap1 = new Intent(getApplicationContext(), MapActivity1.class);
@@ -222,22 +220,19 @@ public class RecordActivity extends AppCompatActivity{
     }
     //한 일과 이벤트 각각의 버튼에 따라 어떻게 fragment를 보여줄지
     public void rOnclick(View v) {
-        switch (v.getId()) {
-            case R.id.record_btn_1:
-                transaction = manager.beginTransaction();       //transaction 시작하겠다.
-                transaction.remove(frag1);
-                transaction.remove(frag2);
-                transaction.add(R.id.record_linear, frag1);         //fragment 추가하겠다.
-                transaction.commit();                           //transaction을 실행해라.
-                break;
-            case R.id.record_btn_2:
-                transaction = manager.beginTransaction();
-                transaction.remove(frag1);
-                transaction.remove(frag2);
-                transaction.add(R.id.record_linear, frag2);
-                transaction.commit();
-                break;
+        Fragment fragment;
+
+        if (isFragment) {
+            fragment = new RecordFragment1() ;
+        } else {
+            fragment = new RecordFragment2() ;
         }
+
+        isFragment = (isFragment) ? false : true ;
+
+        transaction = manager.beginTransaction();
+        transaction.replace(R.id.record_linear, fragment);
+        transaction.commit();
     }
     private void startLocationService() {
         // 위치 관리자 객체 참조
