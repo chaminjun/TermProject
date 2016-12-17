@@ -80,7 +80,7 @@ public class ShowActivity extends Activity {
                 "년 " + (Calendar.getInstance().get(Calendar.MONTH) + 1) +
                 "월 " + Calendar.getInstance().get(Calendar.DAY_OF_MONTH) +
                 "일 \n";
-        String nowtime = str_am_pm + " " +Calendar.getInstance().get(Calendar.HOUR_OF_DAY) +
+        String nowtime = str_am_pm + " " +Calendar.getInstance().get(Calendar.HOUR) +
                 "시 " + Calendar.getInstance().get(Calendar.MINUTE) + "분 까지 남긴 행적 보기";
         caltext.setText(today + nowtime);
     }
